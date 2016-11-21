@@ -33,7 +33,7 @@ class ElasticsearchCookbook::PluginProvider < Chef::Provider::LWRPBase
     plugin_dir_exists = ::File.exist?(es_conf.path_plugins)
     shell_out_as_user!("mkdir -p #{es_conf.path_plugins}", run_context) unless plugin_dir_exists
 
-    command_array = "#{es_conf.path_bin}/elasticsearch-plugin #{arguments.chomp(' ')} #{new_resource.options}".chomp(' ').split(' ')
+    command_array = "#{es_conf.path_bin}/plugin #{arguments.chomp(' ')} #{new_resource.options}".chomp(' ').split(' ')
     shell_out_as_user!(command_array, run_context)
     new_resource.updated_by_last_action(true)
   end
